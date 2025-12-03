@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Jhevish Ramphul | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    :root {
+      --bg: #f6f9fc;
+      --glass: rgba(255, 255, 255, 0.65);
+      --glass-border: rgba(200, 200, 200, 0.45);
+      --text-main: #1a1a1a;
+      --text-muted: #555;
+      --accent: #2563eb;
+      --accent-soft: rgba(37, 99, 235, 0.12);
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.08);
+      --transition: 200ms ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #f4f7fb, #eff6ff 40%, #eaf3ff 100%);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* NAVBAR */
+    .nav {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #e5e7eb;
+      z-index: 30;
+    }
+
+    .nav-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0.7rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: .03em;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-size: .9rem;
+      margin-left: 1.1rem;
+      color: var(--text-muted);
+      position: relative;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width var(--transition);
+      border-radius: 999px;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* WRAPPER */
+    main {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 1.75rem 1.25rem 3rem;
+    }
+
+    /* ANIMATIONS */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(14px);
+      animation: fadeInUp 0.7s var(--transition) forwards;
+    }
+
+    .delay-1 {
+      animation-delay: 0.15s;
+    }
+
+    .delay-2 {
+      animation-delay: 0.3s;
+    }
+
+    .delay-3 {
+      animation-delay: 0.45s;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* HERO */
+    .hero {
+      text-align: left;
+      margin-bottom: 3rem;
+      margin-top: 1.75rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .8rem;
+      border-radius: var(--radius-pill);
+      padding: 0.25rem 0.75rem;
+      background: var(--accent-soft);
+      color: var(--accent);
+      margin-bottom: .8rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.1rem, 5vw, 3rem);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      color: #111;
+    }
+
+    .hero span {
+      color: var(--accent);
+    }
+
+    .hero p {
+      max-width: 650px;
+      color: var(--text-muted);
+      font-size: 1.02rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      padding: 0.75rem 1.4rem;
+      border-radius: var(--radius-pill);
+      font-size: .9rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      transition: var(--transition);
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 40px rgba(37, 99, 235, 0.35);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+    }
+
+    .btn-ghost:hover {
+      background: var(--accent-soft);
+    }
+
+    /* SECTIONS */
+    .section {
+      margin: 3.25rem 0;
+    }
+
+    .section h2 {
+      font-size: 1.5rem;
+      margin-bottom: .6rem;
+      color: #111;
+    }
+
+    .section p {
+      color: var(--text-muted);
+      max-width: 720px;
+      font-size: 0.95rem;
+    }
+
+    /* GRID + CARDS */
+    .grid {
+      margin-top: 1.4rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.4rem;
+    }
+
+    .card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.1rem 1.4rem;
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow-soft);
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      margin-bottom: .45rem;
+      color: #111;
+    }
+
+    .card small {
+      font-size: .8rem;
+      color: var(--text-muted);
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      margin-top: 0.4rem;
+    }
+
+    /* PROJECT CARDS WITH IMAGES */
+    .project-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 14px;
+      margin-bottom: .8rem;
+      background: #d4ddf0;
+    }
+
+    /* SKILLS */
+    .skills-wrap {
+      margin-top: 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+
+    .skill-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      font-size: .85rem;
+      border-radius: var(--radius-pill);
+      padding: 0.3rem 0.75rem;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      color: var(--text-muted);
+    }
+
+    .skill-pill span.icon {
+      font-size: 1rem;
+    }
+
+    /* CONTACT + CV */
+    .contact-box {
+      background: var(--glass);
+      border-radius: 20px;
+      padding: 1.5rem 1.4rem;
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow-soft);
+      margin-top: 1.4rem;
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 1.4rem;
+      align-items: flex-start;
+    }
+
+    .contact-box a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact-box a:hover {
+      text-decoration: underline;
+    }
+
+    .cv-link {
+      margin-top: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .9rem;
+    }
+
+    .cv-link::before {
+      content: "⬇️";
+      font-size: 1rem;
+    }
+
+    .contact-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.7rem;
+    }
+
+    /* FORM */
+    .contact-form {
+      display: grid;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    .contact-form label {
+      font-weight: 500;
+      font-size: 0.85rem;
+      margin-bottom: 0.1rem;
+      display: block;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      padding: 0.55rem 0.7rem;
+      font-family: inherit;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+      background: #ffffff;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent-soft);
+      background: #f9fbff;
+    }
+
+    .contact-form textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .contact-form button {
+      justify-content: center;
+      margin-top: 0.1rem;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 1.6rem 1.25rem 2.1rem;
+      color: var(--text-muted);
+      font-size: .83rem;
+    }
+
+    /* MOBILE OPTIMISATION */
+    @media (max-width: 720px) {
+      .nav-inner {
+        padding-inline: 1rem;
+      }
+
+      nav {
+        justify-content: flex-start;
+      }
+
+      nav a {
+        margin-left: 0.8rem;
+      }
+
+      main {
+        padding-inline: 1rem;
+      }
+
+      .hero {
+        margin-top: 1.5rem;
+      }
+
+      .contact-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-actions a {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <header class="nav">
+    <div class="nav-inner">
+      <div class="logo">Jhevish Ramphul</div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero fade-in">
+      <div class="hero-badge">
+        🎯 Looking for Graduate Software Engineer roles
+      </div>
+      <h1>Hi, I'm <span>Jhevish Ramphul</span>.</h1>
+      <p>
+        MSc Computer Science graduate and BEng Electrical & Electronic Engineer with experience
+        in AI, embedded systems, IoT, and software engineering. I enjoy designing systems, solving
+        technical problems, and building smart digital solutions.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="https://www.linkedin.com/in/jhevishramphul/" target="_blank" class="btn-ghost">
+          Connect on LinkedIn
+        </a>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section fade-in delay-1">
+      <h2>About Me</h2>
+      <p>
+        I hold an MSc in Computer Science from the University of Bath and a BEng (Hons) in
+        Electrical and Electronic Engineering from the University of Mauritius (IET-accredited).
+        My work spans reinforcement learning, embedded and IoT systems, AI-driven automation,
+        and game development for SEN children. I combine structured engineering thinking with
+        creativity, aiming to build systems that are both useful and technically elegant.
+      </p>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="section fade-in delay-2">
+      <h2>Experience</h2>
+      <p>Selected academic and technical experience across software, AI, and engineering.</p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>SEN Game Development – Requirements & Agile Delivery</h3>
+          <small>University of Bath · 2023</small>
+          <p>
+            Led requirements gathering, stakeholder engagement, and acceptance criteria for
+            a Unity-based Serious Game for SEN children. Managed tasks in Trello, facilitated
+            Daily Standups, contributed to Sprint Planning, and oversaw structured testing
+            and validation.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Reinforcement Learning – Lunar Lander Control System</h3>
+          <small>University of Bath · 2024</small>
+          <p>
+            Led a team comparing REINFORCE, DQN, Double DQN & PPO. Designed the training pipeline
+            (state space, reward shaping, reproducible resets), benchmarked learning efficiency,
+            and analysed algorithmic stability and variance.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section fade-in delay-2">
+      <h2>Technical Skills</h2>
+      <p>A mix of software engineering, AI/ML, and engineering tools.</p>
+
+      <div class="skills-wrap">
+        <div class="skill-pill"><span class="icon">🐍</span>Python</div>
+        <div class="skill-pill"><span class="icon">💻</span>C / C++</div>
+        <div class="skill-pill"><span class="icon">🧠</span>TensorFlow / Keras</div>
+        <div class="skill-pill"><span class="icon">📊</span>Scikit-learn</div>
+        <div class="skill-pill"><span class="icon">📸</span>OpenCV</div>
+        <div class="skill-pill"><span class="icon">🧮</span>MATLAB / Simulink</div>
+        <div class="skill-pill"><span class="icon">📐</span>Revit / AutoCAD / Fusion 360</div>
+        <div class="skill-pill"><span class="icon">📦</span>SQLite3</div>
+        <div class="skill-pill"><span class="icon">🧩</span>LabVIEW / Multisim</div>
+        <div class="skill-pill"><span class="icon">☁️</span>Productivity & cloud tooling</div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section fade-in delay-3">
+      <h2>Projects</h2>
+      <p>A selection of my engineering, AI, and software projects.</p>
+
+      <div class="grid">
+
+        <div class="card project-card">
+          <img src="project1.png" alt="IoT Smart Meter preview (placeholder)" />
+          <h3>IoT Smart Meter</h3>
+          <small>LoRa-WAN · Wi-Fi · PCB · PIC32/STM32/Atmega2560</small>
+          <p>
+            Led a team to design a real-time wireless energy monitoring system,
+            including embedded programming and custom PCB design for remote energy logging.
+          </p>
+        </div>
+
+        <div class="card project-card">
+          <img src="project2.png" alt="Airflight database app preview (placeholder)" />
+          <h3>Airflight Database System</h3>
+          <small>Python · Tkinter · SQLite3</small>
+          <p>
+            Developed a desktop GUI application for robust flight data entry, storage,
+            and retrieval, using a custom interface and local database.
+          </p>
+        </div>
+
+        <div class="card project-card">
+          <img src="project3.png" alt="Sudoku solver preview (placeholder)" />
+          <h3>Sudoku AI Solver</h3>
+          <small>Python · X-Algorithm</small>
+          <p>
+            Implemented an AI-based Sudoku solver using the exact-cover X-algorithm to compute
+            complete solutions efficiently.
+          </p>
+        </div>
+
+        <div class="card project-card">
+          <img src="project4.png" alt="Patient monitoring preview (placeholder)" />
+          <h3>Long-Range Patient Monitoring</h3>
+          <small>LoRa RYLR896</small>
+          <p>
+            Built a long-distance health monitoring system connecting microcontrollers via LoRa
+            for reliable, low-power transmission.
+          </p>
+        </div>
+
+        <div class="card project-card">
+          <img src="project5.png" alt="Gesture recognition preview (placeholder)" />
+          <h3>Dynamic Gesture Recognition</h3>
+          <small>Raspberry Pi · LSTM · AI</small>
+          <p>
+            Combined static gesture recognition with LSTM-based dynamic classification to
+            control electrical appliances using hand motion.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT + CV -->
+    <section id="contact" class="section fade-in delay-3">
+      <h2>Contact</h2>
+
+      <div class="contact-box">
+        <div>
+          <p>
+            If you’d like to discuss Graduate Software Engineer roles, collaborate on a project,
+            or just say hello, feel free to reach out through email, LinkedIn, or GitHub.
+          </p>
+
+          <p>
+            Email:
+            <a href="mailto:jhevish98@gmail.com">jhevish98@gmail.com</a>
+          </p>
+
+          <p>
+            LinkedIn:
+            <a href="https://www.linkedin.com/in/jhevishramphul/" target="_blank">
+              linkedin.com/in/jhevishramphul
+            </a>
+          </p>
+
+          <p>
+            GitHub:
+            <a href="https://github.com/Jhevish" target="_blank">
+              github.com/Jhevish
+            </a>
+          </p>
+
+          <a class="cv-link" href="Jhevish_Ramphul_CV.pdf" download>
+            Download my CV (PDF)
+          </a>
+        </div>
+      </div>
+    </section>
