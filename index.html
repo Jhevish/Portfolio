@@ -260,16 +260,6 @@
       margin-top: 0.4rem;
     }
 
-    /* PROJECT CARDS WITH IMAGES */
-    .project-card img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 14px;
-      margin-bottom: .8rem;
-      background: #d4ddf0;
-    }
-
     /* SKILLS */
     .skills-wrap {
       margin-top: 1.2rem;
@@ -305,13 +295,6 @@
       margin-top: 1.4rem;
     }
 
-    .contact-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-      gap: 1.4rem;
-      align-items: flex-start;
-    }
-
     .contact-box a {
       color: var(--accent);
       text-decoration: none;
@@ -333,56 +316,6 @@
     .cv-link::before {
       content: "⬇️";
       font-size: 1rem;
-    }
-
-    .contact-note {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-top: 0.7rem;
-    }
-
-    /* FORM */
-    .contact-form {
-      display: grid;
-      gap: 0.75rem;
-      font-size: 0.9rem;
-    }
-
-    .contact-form label {
-      font-weight: 500;
-      font-size: 0.85rem;
-      margin-bottom: 0.1rem;
-      display: block;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%;
-      border-radius: 10px;
-      border: 1px solid #d1d5db;
-      padding: 0.55rem 0.7rem;
-      font-family: inherit;
-      font-size: 0.9rem;
-      outline: none;
-      transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
-      background: #ffffff;
-    }
-
-    .contact-form input:focus,
-    .contact-form textarea:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 1px var(--accent-soft);
-      background: #f9fbff;
-    }
-
-    .contact-form textarea {
-      min-height: 110px;
-      resize: vertical;
-    }
-
-    .contact-form button {
-      justify-content: center;
-      margin-top: 0.1rem;
     }
 
     /* FOOTER */
@@ -413,10 +346,6 @@
 
       .hero {
         margin-top: 1.5rem;
-      }
-
-      .contact-layout {
-        grid-template-columns: minmax(0, 1fr);
       }
 
       .hero-actions a {
@@ -650,7 +579,6 @@
       </div>
     </section>
 
-
     <!-- CONTACT + CV -->
     <section id="contact" class="section fade-in delay-3">
       <h2>Contact</h2>
@@ -687,3 +615,17 @@
         </div>
       </div>
     </section>
+
+  </main>
+
+  <footer>
+    © <span id="year"></span> Jhevish Ramphul. Built with HTML & CSS.
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+
+</html>
